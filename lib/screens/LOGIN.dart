@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Login extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<Login> {
+  // Controlador de texto para la contraseña
+  TextEditingController _passwordController = TextEditingController();
+  // Estado para saber si la contraseña está visible o no
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
-     // Define los colores principales
-    final Color vinotinto = Color.fromARGB(255, 68, 4, 4);
-    final Color beigeClaro = Color.fromARGB(255, 211, 200, 182);
-    
-      return Scaffold(
+    // Define los colores invertidos
+    final Color beigeClaro = Color(0xFFF5F5DC);
+    final Color vinotinto = Color(0xFF800020);
+
+    return Scaffold(
       backgroundColor: vinotinto, // Fondo vinotinto
       body: Center(
         child: SingleChildScrollView(
@@ -61,12 +69,24 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16.0),
-                    // Campo de contraseña con icono de vinotinto
+                    // Campo de contraseña con opción de ver/ocultar
                     TextField(
-                      obscureText: true,
+                      controller: _passwordController,
+                      obscureText: _obscurePassword, // Si está true, oculta la contraseña
                       decoration: InputDecoration(
                         labelText: 'Contraseña',
                         prefixIcon: Icon(Icons.lock, color: vinotinto),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                            color: vinotinto,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword; // Alternar visibilidad
+                            });
+                          },
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.0),
                         ),
