@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:bild/screens/LOGIN.dart';
+import 'package:bild/screens/PERFIL.dart';
+import 'package:bild/screens/FYP.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'BILD',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Login(),
+        '/profile': (context) => Perfil(),
+        '/settings': (context) => Fyp(),
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
