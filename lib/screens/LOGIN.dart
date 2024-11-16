@@ -7,7 +7,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
      // Define los colores principales
     final Color vinotinto = Color.fromARGB(255, 68, 4, 4);
-    final Color beigeClaro = Color.fromARGB(255, 190, 186, 179);
+    final Color beigeClaro = Color.fromARGB(255, 211, 200, 182);
     
        return Scaffold(
       backgroundColor: vinotinto, // Fondo vinotinto
