@@ -9,29 +9,36 @@ class Login extends StatelessWidget {
     final Color vinotinto = Color(0xFF800020);
     final Color beigeClaro = Color(0xFFF5F5DC);
     
-     return Scaffold(
-      backgroundColor: vinotinto, // Cambiado a vinotinto
+       return Scaffold(
+      backgroundColor: vinotinto, // Fondo vinotinto
       body: Center(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Título central con color beige
+              // Título central con color beige y mayor tamaño
               Text(
                 'BIND',
                 style: TextStyle(
-                  fontSize: 48.0,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 64.0, // Título más grande
+                  fontWeight: FontWeight.bold, // Negrita
                   color: beigeClaro, // Título en color beige
                 ),
               ),
+              SizedBox(height: 16.0),
+              // Línea separadora
+              Container(
+                width: 150.0, // Ancho más corto que el título
+                height: 2.0,
+                color: beigeClaro, // Línea de color beige
+              ),
               SizedBox(height: 32.0),
-              // Contenedor para inputs
+              // Contenedor para inputs más pequeño
               Container(
                 padding: EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: beigeClaro, // Fondo blanco cambiado a beige
+                  color: beigeClaro, // Fondo beige
                   borderRadius: BorderRadius.circular(16.0),
                   boxShadow: [
                     BoxShadow(
@@ -69,7 +76,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16.0),
-              // Texto de cambio de contraseña con color vinotinto
+              // Texto de cambio de contraseña con color blanco
               TextButton(
                 onPressed: () {
                   // Aquí iría la navegación al cambio de contraseña
@@ -77,7 +84,7 @@ class Login extends StatelessWidget {
                 child: Text(
                   '¿Olvidaste tu contraseña?',
                   style: TextStyle(
-                    color: vinotinto, // Color de texto vinotinto
+                    color: Colors.white, // Texto blanco
                     fontWeight: FontWeight.bold,
                   ),
                 ),
