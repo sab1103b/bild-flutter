@@ -18,6 +18,8 @@ class _CrearusuarioState extends State<Crearusuario> {
   String? _selectedCountry;
   String? _selectedCity;
 
+  bool _obscurePassword = true; // Estado para la visibilidad de la contraseña
+
   final List<String> _countries = ['Colombia', 'México', 'Argentina', 'Chile'];
   final Map<String, List<String>> _cities = {
     'Colombia': ['Bogotá', 'Medellín', 'Cali'],
@@ -25,6 +27,11 @@ class _CrearusuarioState extends State<Crearusuario> {
     'Argentina': ['Buenos Aires', 'Córdoba', 'Rosario'],
     'Chile': ['Santiago', 'Valparaíso', 'Concepción'],
   };
+
+  // Expresión regular para validar la contraseña
+  final RegExp _passwordRegExp = RegExp(
+    r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -111,16 +118,39 @@ class _CrearusuarioState extends State<Crearusuario> {
                         ),
                       ),
                       const SizedBox(height: 16.0),
-                      // Campo para contraseña
+                      // Campo para contraseña con validación de seguridad
                       TextField(
                         controller: _passwordController,
-                        obscureText: true,
+                        obscureText: _obscurePassword, // Control de visibilidad
                         decoration: InputDecoration(
                           labelText: 'Contraseña',
                           prefixIcon: Icon(Icons.lock, color: vinotintoOscuro),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                              color: vinotintoOscuro,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword; // Alternar visibilidad
+                              });
+                            },
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
+                        ),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.deny(RegExp(r' ')), // Prohibir espacios en la contraseña
+                        ],
+                      ),
+                      const SizedBox(height: 16.0),
+                      // Mensaje de validación de la contraseña
+                      Text(
+                        'La contraseña debe tener entre 8 y 15 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales.',
+                        style: TextStyle(
+                          color: vinotintoOscuro,
+                          fontSize: 12.0,
                         ),
                       ),
                       const SizedBox(height: 16.0),
@@ -204,6 +234,17 @@ class _CrearusuarioState extends State<Crearusuario> {
                     final country = _selectedCountry;
                     final city = _selectedCity;
 
+                    // Validar la contraseña
+                    if (!_passwordRegExp.hasMatch(password)) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text('La contraseña no cumple con los requisitos'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                      return;
+                    }
+
                     if (fullname.isNotEmpty &&
                         nickname.isNotEmpty &&
                         email.isNotEmpty &&
@@ -221,7 +262,7 @@ class _CrearusuarioState extends State<Crearusuario> {
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: const Text('Por favor, complete todos los campos'),
+                          content: const Text('Por favor complete todos los campos'),
                           backgroundColor: Colors.red,
                         ),
                       );
@@ -229,13 +270,12 @@ class _CrearusuarioState extends State<Crearusuario> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: beigeClaro,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32.0, vertical: 12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Registrar',
                     style: TextStyle(
                       fontSize: 18.0,
