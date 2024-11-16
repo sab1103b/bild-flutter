@@ -5,8 +5,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 environment:
-  sdk: ^3.5.4
-
+  sdk: ">=3.5.4 <4.0.0"  # Aquí es donde debe ir el sdk de Flutter
+  
 dependencies:
   firebase_core: ^2.19.0  # Dependencia de firebase_core
   firebase_auth: ^4.4.0  # Si necesitas usar autenticación
@@ -15,8 +15,9 @@ dependencies:
   uses-material-design: true
 
 flutter:
-  sdk: flutter  # Esta línea indica la ubicación del SDK de Flutter.
-  
+  # La sección de flutter solo contiene configuraciones específicas de Flutter
+  sdk: flutter  # Esta línea debe estar aquí
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
