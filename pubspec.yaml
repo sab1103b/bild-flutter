@@ -4,19 +4,22 @@ description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
   
 flutter:
-    sdk: flutter
-    cupertino_icons: ^1.0.8
+  sdk: flutter
+  cupertino_icons: ^1.0.8
+  uses-material-design: true
 
 version: 1.0.0+1
 environment:
   sdk: ^3.5.4
 
 dependencies:
+  firebase_core: ^2.19.0  # Agrega la dependencia de firebase_core
+  firebase_auth: ^4.4.0  # Si necesitas usar autenticación
+  cloud_firestore: ^4.8.0  # Si deseas usar Firestore
+  cupertino_icons: ^1.0.8
+  uses-material-design: true
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-flutter:
-
-  uses-material-design: true
