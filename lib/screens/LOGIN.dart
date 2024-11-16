@@ -14,7 +14,7 @@ class _LoginScreenState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     // Define los colores vinotinto claro y oscuro, y beige
-    final Color vinotintoClaro = Color(0xFFB3001B); // Vinotinto claro
+    final Color vinotintoClaro = Color.fromARGB(255, 131, 23, 39); // Vinotinto claro
     final Color vinotintoOscuro = Color.fromARGB(255, 68, 4, 4); // Vinotinto oscuro
     final Color beigeClaro = Color.fromARGB(255,211,200,182); // Beige claro
 
