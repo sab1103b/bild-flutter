@@ -9,7 +9,7 @@ class Login extends StatelessWidget {
     final Color vinotinto = Color.fromARGB(255, 68, 4, 4);
     final Color beigeClaro = Color.fromARGB(255, 211, 200, 182);
     
-       return Scaffold(
+      return Scaffold(
       backgroundColor: vinotinto, // Fondo vinotinto
       body: Center(
         child: SingleChildScrollView(
@@ -17,19 +17,19 @@ class Login extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Título central con color beige y mayor tamaño
+              // Título central con color beige, más grande y en negrita
               Text(
-                'BILD',
+                'BIND',
                 style: TextStyle(
-                  fontSize: 64.0, // Título más grande
-                  fontWeight: FontWeight.bold, // Negrita
+                  fontSize: 72.0, // Aumentado el tamaño del título
+                  fontWeight: FontWeight.bold, // Más negrita
                   color: beigeClaro, // Título en color beige
                 ),
               ),
-              SizedBox(height: 16.0),
-              // Línea separadora
+              SizedBox(height: 8.0), // Menos espacio entre el título y la línea
+              // Línea separadora más cerca del título
               Container(
-                width: 150.0, // Ancho más corto que el título
+                width: 180.0, // Ancho más corto que el título
                 height: 2.0,
                 color: beigeClaro, // Línea de color beige
               ),
@@ -76,17 +76,37 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16.0),
-              // Texto de cambio de contraseña con color blanco
-              TextButton(
-                onPressed: () {
-                  // Aquí iría la navegación al cambio de contraseña
-                },
-                child: Text(
-                  '¿Olvidaste tu contraseña?',
-                  style: TextStyle(
-                    color: Colors.white, // Texto blanco
-                    fontWeight: FontWeight.bold,
+              // Texto "Olvidaste tu contraseña" a la derecha con fuente light
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    // Aquí iría la navegación al cambio de contraseña
+                  },
+                  child: Text(
+                    '¿Olvidaste tu contraseña?',
+                    style: TextStyle(
+                      color: Colors.white, // Texto blanco
+                      fontWeight: FontWeight.w300, // Fuente más ligera
+                    ),
                   ),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              // Línea separadora más larga
+              Container(
+                width: 250.0, // Línea más larga
+                height: 2.0,
+                color: beigeClaro, // Línea de color beige
+              ),
+              SizedBox(height: 16.0),
+              // Texto "Registrar nuevo usuario"
+              Text(
+                'Registrar nuevo usuario',
+                style: TextStyle(
+                  color: beigeClaro, // Texto en color beige
+                  fontWeight: FontWeight.normal, // Fuente normal
+                  fontSize: 16.0, // Tamaño de texto
                 ),
               ),
               SizedBox(height: 16.0),
