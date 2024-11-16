@@ -27,7 +27,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32.0),
-              // Contenedor para inputs
+              // --------------------------------------------------------------------- Contenedor para inputs
               Container(
                 padding: EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
@@ -43,7 +43,7 @@ class Login extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    // Campo de usuario
+                    // ----------------------------------------------------------------------- Campo de usuario
                     TextField(
                       decoration: InputDecoration(
                         labelText: 'Usuario',
@@ -54,7 +54,7 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16.0),
-                    // Campo de contraseña
+                    // ----------------------------------------------------------------------- Campo de contraseña
                     TextField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -69,7 +69,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16.0),
-              // Texto de cambio de contraseña
+              // ----------------------------------------------------------------- Texto de cambio de contraseña
               TextButton(
                 onPressed: () {
                   // Aquí iría la navegación al cambio de contraseña
@@ -83,7 +83,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16.0),
-              // Botón de ingreso
+              //----------------------------------------------------------------- Botón de ingreso
               ElevatedButton(
                 onPressed: () {
                   // Acción para el botón de ingreso
@@ -104,7 +104,8 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32.0),
-              // Botones de navegación
+
+              // -----------------------------------------------------------------Botones de navegación
               Column(
                 children: [
                   ElevatedButton(
@@ -112,7 +113,7 @@ class Login extends StatelessWidget {
                       Navigator.pushNamed(context, '/perfil');
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: vinotinto,
+                      backgroundColor: vinotinto,
                       padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
@@ -132,7 +133,7 @@ class Login extends StatelessWidget {
                       Navigator.pushNamed(context, '/fyp');
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: vinotinto,
+                      backgroundColor: vinotinto,
                       padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
