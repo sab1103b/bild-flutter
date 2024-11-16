@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "270954655029",
+    "project_id": "bild-f7e2f",
+    "storage_bucket": "bild-f7e2f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270954655029:android:dba499e1576e89a3a2f07c",
+        "android_client_info": {
+          "package_name": "com.BILD.bild"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzRBdW0mHh7o8qeU4XtFQeXjvnpyVLSws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270954655029:android:d4e33dbad4359e5fa2f07c",
+        "android_client_info": {
+          "package_name": "com.mycompany.bild"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzRBdW0mHh7o8qeU4XtFQeXjvnpyVLSws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
