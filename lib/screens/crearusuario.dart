@@ -275,7 +275,7 @@ class _CrearusuarioState extends State<Crearusuario> {
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Registrar',
                     style: TextStyle(
                       fontSize: 18.0,
