@@ -131,17 +131,19 @@ class _LoginScreenState extends State<Login> {
                   color: beigeClaro, // Línea de color beige
                 ),
                 const SizedBox(height: 16.0),
-                // Texto "Registrar nuevo usuario"
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/Crear');
-                  },
-                  child: Text(
-                    'Registrar nuevo usuario',
-                    style: TextStyle(
-                      color: beigeClaro, // Texto en beige
-                      fontWeight: FontWeight.normal, // Fuente normal
-                      fontSize: 16.0, // Tamaño de texto
+                // Botón "Registrar nuevo usuario"
+                Align(
+                  alignment: Alignment.center,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/Crear');
+                    },
+                    child: Text(
+                      'Registrar nuevo usuario',
+                      style: TextStyle(
+                        color: beigeClaro, // Texto beige
+                        fontWeight: FontWeight.w300, // Fuente más ligera
+                      ),
                     ),
                   ),
                 ),
