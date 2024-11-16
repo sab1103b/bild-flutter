@@ -7,10 +7,12 @@ class Fyp extends StatefulWidget {
 }
 
 class _FypState extends State<Fyp> {
-  // Lista que almacena el conteo de likes para cada publicación
-  final List<int> _likes = List<int>.generate(5, (index) => 0); // Inicializa con 0 likes por publicación
   final Color vinotintoOscuro = const Color(0xFF660000);
   final Color beigeClaro = const Color(0xFFF5F5DC);
+
+  // Lista para rastrear si un usuario ha dado "Me gusta" a cada publicación
+  final List<bool> _hasLiked = List<bool>.generate(5, (index) => false);
+  final List<int> _likes = List<int>.generate(5, (index) => 0);
 
   @override
   Widget build(BuildContext context) {
@@ -108,14 +110,24 @@ class _FypState extends State<Fyp> {
                               children: [
                                 IconButton(
                                   icon: Icon(
-                                    Icons.favorite,
-                                    color: _likes[index] > 0
+                                    _hasLiked[index]
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    color: _hasLiked[index]
                                         ? Colors.red
                                         : vinotintoOscuro,
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      _likes[index]++;
+                                      if (_hasLiked[index]) {
+                                        // Si ya ha dado like, lo quita
+                                        _likes[index]--;
+                                      } else {
+                                        // Si no ha dado like, lo agrega
+                                        _likes[index]++;
+                                      }
+                                      _hasLiked[index] =
+                                          !_hasLiked[index]; // Cambia el estado
                                     });
                                   },
                                 ),
