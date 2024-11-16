@@ -6,8 +6,8 @@ class Fyp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Colores
-    final Color vinotintoOscuro = Color(0xFF660000); // Vinotinto oscuro
-    final Color beigeClaro = Color(0xFFF5F5DC); // Beige claro
+    final Color vinotintoOscuro = const Color(0xFF660000); // Vinotinto oscuro
+    final Color beigeClaro = const Color(0xFFF5F5DC); // Beige claro
 
     return Scaffold(
       appBar: AppBar(
@@ -47,13 +47,13 @@ class Fyp extends StatelessWidget {
           children: [
             // Sección de publicaciones (en scroll)
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   // Aquí irán las publicaciones dinámicas (Firebase)
                   for (int i = 0; i < 10; i++) 
                     Card(
-                      margin: EdgeInsets.symmetric(vertical: 8.0),
+                      margin: const EdgeInsets.symmetric(vertical: 8.0),
                       elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),

@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'BILD',
       initialRoute: '/',
       routes: {
-        '/': (context) => Login(),
-        '/perfil': (context) => Perfil(),
-        '/fyp': (context) => Fyp(),
+        '/': (context) => const Login(),
+        '/perfil': (context) => const Perfil(),
+        '/fyp': (context) => const Fyp(),
       },
       
     );

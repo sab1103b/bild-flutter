@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
+  const Login({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<Login> {
   // Controlador de texto para la contraseña
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   // Estado para saber si la contraseña está visible o no
   bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
     // Define los colores vinotinto claro y oscuro, y beige
-    final Color vinotintoClaro = Color.fromARGB(255, 131, 23, 39); // Vinotinto claro
-    final Color vinotintoOscuro = Color.fromARGB(255, 68, 4, 4); // Vinotinto oscuro
-    final Color beigeClaro = Color.fromARGB(255,211,200,182); // Beige claro
+    final Color vinotintoClaro = const Color.fromARGB(255, 131, 23, 39); // Vinotinto claro
+    final Color vinotintoOscuro = const Color.fromARGB(255, 68, 4, 4); // Vinotinto oscuro
+    final Color beigeClaro = const Color.fromARGB(255,211,200,182); // Beige claro
 
     return Scaffold(
       // Fondo con gradiente de vinotinto claro a oscuro
@@ -30,7 +32,7 @@ class _LoginScreenState extends State<Login> {
         ),
         child: Center(
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -43,21 +45,21 @@ class _LoginScreenState extends State<Login> {
                     color: beigeClaro, // Título en beige
                   ),
                 ),
-                SizedBox(height: 8.0), // Menos espacio entre el título y la línea
+                const SizedBox(height: 8.0), // Menos espacio entre el título y la línea
                 // Línea separadora más cerca del título
                 Container(
                   width: 180.0, // Ancho más corto que el título
                   height: 2.0,
                   color: beigeClaro, // Línea de color beige
                 ),
-                SizedBox(height: 32.0),
+                const SizedBox(height: 32.0),
                 // Contenedor para inputs más pequeño, con fondo beige
                 Container(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
                     color: beigeClaro, // Fondo beige
                     borderRadius: BorderRadius.circular(16.0),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.black26,
                         blurRadius: 8.0,
@@ -77,7 +79,7 @@ class _LoginScreenState extends State<Login> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       // Campo de contraseña con opción de ver/ocultar
                       TextField(
                         controller: _passwordController,
@@ -104,7 +106,7 @@ class _LoginScreenState extends State<Login> {
                     ],
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 // Texto "Olvidaste tu contraseña" a la derecha con fuente light
                 Align(
                   alignment: Alignment.centerRight,
@@ -121,14 +123,14 @@ class _LoginScreenState extends State<Login> {
                     ),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 // Línea separadora más larga
                 Container(
                   width: 250.0, // Línea más larga
                   height: 2.0,
                   color: beigeClaro, // Línea de color beige
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 // Texto "Registrar nuevo usuario"
                 Text(
                   'Registrar nuevo usuario',
@@ -138,7 +140,7 @@ class _LoginScreenState extends State<Login> {
                     fontSize: 16.0, // Tamaño de texto
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 // Botón de ingreso con fondo beige y texto vinotinto
                 ElevatedButton(
                   onPressed: () {
@@ -147,7 +149,7 @@ class _LoginScreenState extends State<Login> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: beigeClaro, // Fondo beige
-                    padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
