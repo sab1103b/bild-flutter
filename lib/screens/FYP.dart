@@ -5,55 +5,143 @@ class Fyp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Definir colores: vinotinto y beige
-    final Color vinotintoClaro = Color(0xFFB3001B); // Vinotinto claro
+    // Colores
     final Color vinotintoOscuro = Color(0xFF660000); // Vinotinto oscuro
     final Color beigeClaro = Color(0xFFF5F5DC); // Beige claro
 
     return Scaffold(
-      // Fondo beige claro
-      body: Container(
-        decoration: BoxDecoration(
-          color: beigeClaro, // Fondo beige
+      appBar: AppBar(
+        backgroundColor: beigeClaro, // Fondo beige para la barra superior
+        leading: Row(
+          children: [
+            // Icono de notificaciones (izquierda)
+            IconButton(
+              icon: Icon(Icons.notifications, color: vinotintoOscuro),
+              onPressed: () {
+                // Acción de notificación
+              },
+            ),
+            // Icono de chat (izquierda)
+            IconButton(
+              icon: Icon(Icons.chat, color: vinotintoOscuro),
+              onPressed: () {
+                // Acción de chat
+              },
+            ),
+          ],
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Título de la pantalla con vinotinto
-              Text(
-                'FYP Screen',
-                style: TextStyle(
-                  fontSize: 36.0,
-                  fontWeight: FontWeight.bold,
-                  color: vinotintoOscuro, // Título en vinotinto oscuro
-                ),
-              ),
-              SizedBox(height: 20.0),
-              // Botón para regresar, con fondo vinotinto y texto blanco
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: vinotintoOscuro, // Fondo vinotinto oscuro para el botón
-                  foregroundColor : Colors.white, // Texto blanco
-                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                ),
-                child: Text(
-                  'Back to Home',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white, // Texto blanco
-                  ),
-                ),
-              ),
-            ],
+        title: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            'BILD',
+            style: TextStyle(
+              fontSize: 28.0,
+              fontWeight: FontWeight.bold,
+              color: vinotintoOscuro,
+            ),
           ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Sección de publicaciones (en scroll)
+            Container(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  // Aquí irán las publicaciones dinámicas (Firebase)
+                  for (int i = 0; i < 10; i++) 
+                    Card(
+                      margin: EdgeInsets.symmetric(vertical: 8.0),
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: ListTile(
+                        title: Text(
+                          'Publicación $i',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: vinotintoOscuro,
+                          ),
+                        ),
+                        subtitle: Text(
+                          'Descripción de la publicación',
+                          style: TextStyle(color: vinotintoOscuro),
+                        ),
+                        trailing: Icon(Icons.favorite_border, color: vinotintoOscuro),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            // Línea con las 4 opciones
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Divider(
+                color: vinotintoOscuro,
+                thickness: 2.0,
+              ),
+            ),
+            // Opciones en la parte inferior
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // FYP
+                  GestureDetector(
+                    onTap: () {
+                      // Acción para FYP
+                    },
+                    child: Column(
+                      children: [
+                        Icon(Icons.home, color: vinotintoOscuro),
+                        Text('FYP', style: TextStyle(color: vinotintoOscuro)),
+                      ],
+                    ),
+                  ),
+                  // Búsqueda
+                  GestureDetector(
+                    onTap: () {
+                      // Acción para Búsqueda
+                    },
+                    child: Column(
+                      children: [
+                        Icon(Icons.search, color: vinotintoOscuro),
+                        Text('Búsqueda', style: TextStyle(color: vinotintoOscuro)),
+                      ],
+                    ),
+                  ),
+                  // Eventos
+                  GestureDetector(
+                    onTap: () {
+                      // Acción para Eventos
+                    },
+                    child: Column(
+                      children: [
+                        Icon(Icons.event, color: vinotintoOscuro),
+                        Text('Eventos', style: TextStyle(color: vinotintoOscuro)),
+                      ],
+                    ),
+                  ),
+                  // Perfil
+                  GestureDetector(
+                    onTap: () {
+                      // Acción para Perfil
+                    },
+                    child: Column(
+                      children: [
+                        Icon(Icons.account_circle, color: vinotintoOscuro),
+                        Text('Perfil', style: TextStyle(color: vinotintoOscuro)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
