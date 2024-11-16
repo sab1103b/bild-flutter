@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Login(),
-        '/profile': (context) => Perfil(),
-        '/settings': (context) => Fyp(),
+        '/perfil': (context) => Perfil(),
+        '/fyp': (context) => Fyp(),
       },
       
     );
