@@ -6,7 +6,7 @@ class Perfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile Screen')),
+      appBar: AppBar(title: const Text('Perfil')),
       body: Center(
         child: ElevatedButton(
           onPressed: () {

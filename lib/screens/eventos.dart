@@ -6,7 +6,7 @@ class Eventos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Notificaciones')),
+      appBar: AppBar(title: const Text('Eventos')),
       body: Center(
         child: ElevatedButton(
           onPressed: () {

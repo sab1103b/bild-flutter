@@ -1,3 +1,7 @@
+import 'package:bild/screens/chats.dart';
+import 'package:bild/screens/crearusuario.dart';
+import 'package:bild/screens/eventos.dart';
+import 'package:bild/screens/notificaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:bild/screens/login.dart';
 import 'package:bild/screens/perfil.dart';
@@ -21,6 +25,10 @@ class MyApp extends StatelessWidget {
         '/': (context) => const Login(),
         '/perfil': (context) => const Perfil(),
         '/fyp': (context) => const Fyp(),
+        '/chat': (context) => const Chats(),
+        '/noti': (context) => const Notificaciones(),
+        '/eventos': (context) => const Eventos(),
+        '/Crear': (context) => const Crearusuario(),
       },
       
     );
