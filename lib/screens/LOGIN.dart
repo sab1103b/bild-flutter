@@ -6,7 +6,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      // Define los colores principales
-    final Color vinotinto = Color(0xFF800020);
+    final Color vinotinto = Color(490808);
     final Color beigeClaro = Color(0xFFF5F5DC);
     
        return Scaffold(
