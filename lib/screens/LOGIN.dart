@@ -7,7 +7,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
      // Define los colores principales
     final Color vinotinto = Color.fromARGB(255, 68, 4, 4);
-    final Color beigeClaro = Color.fromARGB(255, 233, 212, 180);
+    final Color beigeClaro = Color.fromARGB(255, 190, 186, 179);
     
        return Scaffold(
       backgroundColor: vinotinto, // Fondo vinotinto
@@ -19,7 +19,7 @@ class Login extends StatelessWidget {
             children: [
               // Título central con color beige y mayor tamaño
               Text(
-                'BIND',
+                'BILD',
                 style: TextStyle(
                   fontSize: 64.0, // Título más grande
                   fontWeight: FontWeight.bold, // Negrita
