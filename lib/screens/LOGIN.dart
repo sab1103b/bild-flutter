@@ -14,8 +14,8 @@ class _LoginScreenState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     // Define los colores invertidos
-    final Color beigeClaro = Color(0xFFF5F5DC);
-    final Color vinotinto = Color(0xFF800020);
+    final Color vinotinto = Color.fromARGB(255, 68, 4, 4);
+    final Color beigeClaro = Color.fromARGB(255, 211, 200, 182);
 
     return Scaffold(
       backgroundColor: vinotinto, // Fondo vinotinto
