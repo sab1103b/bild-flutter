@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // Para los formateadores de texto
 
 class Crearusuario extends StatefulWidget {
   const Crearusuario({super.key});
@@ -8,19 +9,30 @@ class Crearusuario extends StatefulWidget {
 }
 
 class _CrearusuarioState extends State<Crearusuario> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _fullnameController = TextEditingController();
+  final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+
+  String? _selectedCountry;
+  String? _selectedCity;
+
+  final List<String> _countries = ['Colombia', 'México', 'Argentina', 'Chile'];
+  final Map<String, List<String>> _cities = {
+    'Colombia': ['Bogotá', 'Medellín', 'Cali'],
+    'México': ['CDMX', 'Guadalajara', 'Monterrey'],
+    'Argentina': ['Buenos Aires', 'Córdoba', 'Rosario'],
+    'Chile': ['Santiago', 'Valparaíso', 'Concepción'],
+  };
 
   @override
   Widget build(BuildContext context) {
-    // Define colores vinotinto y beige para mantener la coherencia con el diseño.
     final Color vinotintoClaro = const Color.fromARGB(255, 131, 23, 39);
     final Color vinotintoOscuro = const Color.fromARGB(255, 68, 4, 4);
     final Color beigeClaro = const Color.fromARGB(255, 211, 200, 182);
 
     return Scaffold(
-      // Fondo con gradiente vinotinto
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -35,7 +47,6 @@ class _CrearusuarioState extends State<Crearusuario> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Título de la pantalla
                 Text(
                   'Registro',
                   style: TextStyle(
@@ -45,7 +56,6 @@ class _CrearusuarioState extends State<Crearusuario> {
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                // Contenedor con campos de entrada
                 Container(
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
@@ -61,19 +71,34 @@ class _CrearusuarioState extends State<Crearusuario> {
                   ),
                   child: Column(
                     children: [
-                      // Campo de texto para nombre de usuario
+                      // Campo para nombre completo (solo letras)
                       TextField(
-                        controller: _usernameController,
+                        controller: _fullnameController,
                         decoration: InputDecoration(
-                          labelText: 'Nombre de usuario',
+                          labelText: 'Nombre completo',
                           prefixIcon: Icon(Icons.person, color: vinotintoOscuro),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')), // Solo letras y espacios
+                        ],
+                      ),
+                      const SizedBox(height: 16.0),
+                      // Campo para nickname deseado
+                      TextField(
+                        controller: _nicknameController,
+                        decoration: InputDecoration(
+                          labelText: 'Nickname',
+                          prefixIcon: Icon(Icons.tag_faces, color: vinotintoOscuro),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                         ),
                       ),
                       const SizedBox(height: 16.0),
-                      // Campo de texto para email
+                      // Campo para correo electrónico
                       TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -86,7 +111,7 @@ class _CrearusuarioState extends State<Crearusuario> {
                         ),
                       ),
                       const SizedBox(height: 16.0),
-                      // Campo de texto para contraseña
+                      // Campo para contraseña
                       TextField(
                         controller: _passwordController,
                         obscureText: true,
@@ -98,24 +123,97 @@ class _CrearusuarioState extends State<Crearusuario> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 16.0),
+                      // Selector de país
+                      DropdownButtonFormField<String>(
+                        value: _selectedCountry,
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedCountry = value;
+                            _selectedCity = null; // Resetear ciudad cuando se cambie el país
+                          });
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'País',
+                          prefixIcon: Icon(Icons.flag, color: vinotintoOscuro),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
+                        items: _countries.map((String country) {
+                          return DropdownMenuItem<String>(
+                            value: country,
+                            child: Text(country),
+                          );
+                        }).toList(),
+                      ),
+                      const SizedBox(height: 16.0),
+                      // Selector de ciudad
+                      if (_selectedCountry != null)
+                        DropdownButtonFormField<String>(
+                          value: _selectedCity,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedCity = value;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'Ciudad',
+                            prefixIcon: Icon(Icons.location_city, color: vinotintoOscuro),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                          items: _selectedCountry != null
+                              ? _cities[_selectedCountry]!.map((String city) {
+                                  return DropdownMenuItem<String>(
+                                    value: city,
+                                    child: Text(city),
+                                  );
+                                }).toList()
+                              : [],
+                        ),
+                      const SizedBox(height: 16.0),
+                      // Campo para teléfono celular (solo números)
+                      TextField(
+                        controller: _phoneController,
+                        keyboardType: TextInputType.phone,
+                        maxLength: 10,
+                        decoration: InputDecoration(
+                          labelText: 'Teléfono celular',
+                          prefixIcon: Icon(Icons.phone, color: vinotintoOscuro),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly, // Solo números
+                        ],
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 24.0),
-                // Botón de registrar
                 ElevatedButton(
                   onPressed: () {
-                    // Aquí agregarías la lógica para registrar al usuario.
-                    final username = _usernameController.text;
+                    final fullname = _fullnameController.text;
+                    final nickname = _nicknameController.text;
                     final email = _emailController.text;
                     final password = _passwordController.text;
+                    final phone = _phoneController.text;
+                    final country = _selectedCountry;
+                    final city = _selectedCity;
 
-                    if (username.isNotEmpty &&
+                    if (fullname.isNotEmpty &&
+                        nickname.isNotEmpty &&
                         email.isNotEmpty &&
-                        password.isNotEmpty) {
+                        password.isNotEmpty &&
+                        phone.isNotEmpty &&
+                        country != null &&
+                        city != null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('Usuario $username registrado con éxito'),
+                          content: Text('Usuario registrado con éxito'),
                           backgroundColor: vinotintoClaro,
                         ),
                       );
@@ -146,10 +244,9 @@ class _CrearusuarioState extends State<Crearusuario> {
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                // Botón para regresar al login
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pop(context); // Regresa al inicio
                   },
                   child: Text(
                     'Volver al inicio',
