@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-
-class Fyp extends StatelessWidget {
+class Fyp extends StatefulWidget {
   const Fyp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Colores
-    final Color vinotintoOscuro = const Color(0xFF660000); // Vinotinto oscuro
-    final Color beigeClaro = const Color(0xFFF5F5DC); // Beige claro
+  State<Fyp> createState() => _FypState();
+}
 
-    
+class _FypState extends State<Fyp> {
+  // Lista que almacena el conteo de likes para cada publicación
+  final List<int> _likes = List<int>.generate(5, (index) => 0); // Inicializa con 0 likes por publicación
+  final Color vinotintoOscuro = const Color(0xFF660000);
+  final Color beigeClaro = const Color(0xFFF5F5DC);
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: beigeClaro,
@@ -103,59 +107,38 @@ class Fyp extends StatelessWidget {
                             Row(
                               children: [
                                 IconButton(
-                                  icon: Icon(Icons.favorite_border,
-                                      color: vinotintoOscuro),
-                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.favorite,
+                                    color: _likes[index] > 0
+                                        ? Colors.red
+                                        : vinotintoOscuro,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _likes[index]++;
+                                    });
+                                  },
                                 ),
-                                IconButton(
-                                  icon: Icon(Icons.comment_outlined,
-                                      color: vinotintoOscuro),
-                                  onPressed: () {},
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.share_outlined,
-                                      color: vinotintoOscuro),
-                                  onPressed: () {},
+                                Text(
+                                  '${_likes[index]} likes',
+                                  style: TextStyle(
+                                    color: vinotintoOscuro,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ],
                             ),
+                            IconButton(
+                              icon: Icon(Icons.comment_outlined,
+                                  color: vinotintoOscuro),
+                              onPressed: () {},
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.share_outlined,
+                                  color: vinotintoOscuro),
+                              onPressed: () {},
+                            ),
                             Icon(Icons.bookmark_border, color: vinotintoOscuro),
-                          ],
-                        ),
-                      ),
-                      // Descripción
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                          vertical: 8.0,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '10 likes',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: vinotintoOscuro,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            RichText(
-                              text: TextSpan(
-                                style: TextStyle(color: vinotintoOscuro),
-                                children: [
-                                  TextSpan(
-                                    text: 'Usuario ${index + 1} ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: 'Descripción de la publicación.',
-                                  ),
-                                ],
-                              ),
-                            ),
                           ],
                         ),
                       ),
