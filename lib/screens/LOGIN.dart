@@ -10,20 +10,20 @@ class Login extends StatelessWidget {
     final Color beigeClaro = Color(0xFFF5F5DC);
     
      return Scaffold(
-      backgroundColor: beigeClaro,
+      backgroundColor: vinotinto, // Cambiado a vinotinto
       body: Center(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Título central
+              // Título central con color beige
               Text(
                 'BIND',
                 style: TextStyle(
                   fontSize: 48.0,
                   fontWeight: FontWeight.bold,
-                  color: vinotinto,
+                  color: beigeClaro, // Título en color beige
                 ),
               ),
               SizedBox(height: 32.0),
@@ -31,7 +31,7 @@ class Login extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: beigeClaro, // Fondo blanco cambiado a beige
                   borderRadius: BorderRadius.circular(16.0),
                   boxShadow: [
                     BoxShadow(
@@ -43,7 +43,7 @@ class Login extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    // Campo de usuario
+                    // Campo de usuario con icono de vinotinto
                     TextField(
                       decoration: InputDecoration(
                         labelText: 'Usuario',
@@ -54,7 +54,7 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16.0),
-                    // Campo de contraseña
+                    // Campo de contraseña con icono de vinotinto
                     TextField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -69,7 +69,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16.0),
-              // Texto de cambio de contraseña
+              // Texto de cambio de contraseña con color vinotinto
               TextButton(
                 onPressed: () {
                   // Aquí iría la navegación al cambio de contraseña
@@ -77,20 +77,20 @@ class Login extends StatelessWidget {
                 child: Text(
                   '¿Olvidaste tu contraseña?',
                   style: TextStyle(
-                    color: vinotinto,
+                    color: vinotinto, // Color de texto vinotinto
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               SizedBox(height: 16.0),
-              // Botón de ingreso
+              // Botón de ingreso con fondo beige y texto vinotinto
               ElevatedButton(
                 onPressed: () {
                   // Redirecciona a FYP
                   Navigator.pushNamed(context, '/fyp');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: vinotinto, // Color de fondo
+                  backgroundColor: beigeClaro, // Fondo beige
                   padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),
@@ -100,7 +100,7 @@ class Login extends StatelessWidget {
                   'Ingresar',
                   style: TextStyle(
                     fontSize: 18.0,
-                    color: beigeClaro, // Color del texto
+                    color: vinotinto, // Texto vinotinto
                   ),
                 ),
               ),
