@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class Perfil extends StatelessWidget {
+  const Perfil({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Profile Screen')),
+      appBar: AppBar(title: const Text('Profile Screen')),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Back to Home'),
+          child: const Text('Back to Home'),
         ),
       ),
     );
