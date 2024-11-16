@@ -9,20 +9,19 @@ class Fyp extends StatelessWidget {
     final Color vinotintoOscuro = const Color(0xFF660000); // Vinotinto oscuro
     final Color beigeClaro = const Color(0xFFF5F5DC); // Beige claro
 
-     return Scaffold(
+    
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: beigeClaro,
         leading: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Icono de notificaciones
             IconButton(
               icon: Icon(Icons.notifications, color: vinotintoOscuro),
               onPressed: () {
                 Navigator.pushNamed(context, '/noti');
               },
             ),
-            // Icono de chat
             IconButton(
               icon: Icon(Icons.chat, color: vinotintoOscuro),
               onPressed: () {
@@ -49,39 +48,122 @@ class Fyp extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                children: [
-                  for (int i = 0; i < 10; i++)
-                    Card(
-                      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                children: List.generate(5, (index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Encabezado de la publicación
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                          vertical: 8.0,
+                        ),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: vinotintoOscuro,
+                              child: Text(
+                                'U${index + 1}',
+                                style: TextStyle(color: beigeClaro),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                'Usuario ${index + 1}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: vinotintoOscuro,
+                                ),
+                              ),
+                            ),
+                            Icon(Icons.more_vert, color: vinotintoOscuro),
+                          ],
+                        ),
                       ),
-                      child: ListTile(
-                        title: Text(
-                          'Publicación $i',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: vinotintoOscuro,
+                      // Imagen principal
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                        height: 250.0,
+                        decoration: BoxDecoration(
+                          color: vinotintoOscuro,
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            image: AssetImage('assets/placeholder.jpg'),
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        subtitle: Text(
-                          'Descripción de la publicación',
-                          style: TextStyle(color: vinotintoOscuro),
-                        ),
-                        trailing: Icon(Icons.favorite_border, color: vinotintoOscuro),
                       ),
-                    ),
-                ],
+                      // Interacciones
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.favorite_border,
+                                      color: vinotintoOscuro),
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.comment_outlined,
+                                      color: vinotintoOscuro),
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.share_outlined,
+                                      color: vinotintoOscuro),
+                                  onPressed: () {},
+                                ),
+                              ],
+                            ),
+                            Icon(Icons.bookmark_border, color: vinotintoOscuro),
+                          ],
+                        ),
+                      ),
+                      // Descripción
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                          vertical: 8.0,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '10 likes',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: vinotintoOscuro,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            RichText(
+                              text: TextSpan(
+                                style: TextStyle(color: vinotintoOscuro),
+                                children: [
+                                  TextSpan(
+                                    text: 'Usuario ${index + 1} ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: 'Descripción de la publicación.',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(thickness: 1.0),
+                    ],
+                  );
+                }),
               ),
-            ),
-          ),
-          // Línea divisora
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Divider(
-              color: vinotintoOscuro,
-              thickness: 2.0,
             ),
           ),
           // Menú inferior
@@ -90,7 +172,6 @@ class Fyp extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                // FYP
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/fyp');
@@ -102,7 +183,6 @@ class Fyp extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Búsqueda
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/');
@@ -114,7 +194,6 @@ class Fyp extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Eventos
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/eventos');
@@ -126,7 +205,6 @@ class Fyp extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Perfil
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/perfil');
