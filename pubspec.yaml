@@ -1,24 +1,25 @@
 name: bild
 description: "A new Flutter project."
 
-publish_to: 'none'  # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
-
 environment:
-  sdk: ">=3.5.4 <4.0.0"  # SDK de Dart que se requiere
+  sdk: ^3.5.4
+dependencies:
+  flutter:
+    sdk: flutter
+    cupertino_icons: ^1.0.8
 
 dependencies:
-  firebase_core: ^2.19.0  # Dependencia de firebase_core
-  firebase_auth: ^4.4.0  # Dependencia para autenticación
-  cloud_firestore: ^4.8.0  # Dependencia para Firestore
-  cupertino_icons: ^1.0.8  # Iconos de Cupertino para iOS
-  uses-material-design: true  # Habilitar Material Design
-
-flutter:
-  sdk: flutter  # Esta es la configuración de Flutter
-
+  firebase_core: ^latest_version
+  firebase_auth: ^latest_version
+  cloud_firestore: ^latest_version
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+flutter:
+
+  uses-material-design: true
