@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PerfilScreen extends StatefulWidget {
-  const PerfilScreen({super.key});
+class Perfil extends StatefulWidget {
+  const Perfil({super.key});
 
   @override
   _PerfilScreenState createState() => _PerfilScreenState();
 }
 
-class _PerfilScreenState extends State<PerfilScreen> {
+class _PerfilScreenState extends State<Perfil> {
   // Datos de usuario simulado
   final String _fullname = "Mauricio Munar";
   final String _nickname = "mauriciomunar";
