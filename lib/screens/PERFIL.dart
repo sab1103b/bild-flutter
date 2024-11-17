@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PerfilScreen extends StatefulWidget {
-  const PerfilScreen({super.key});
+class Perfil extends StatefulWidget {
+  const Perfil({super.key});
 
   @override
   _PerfilScreenState createState() => _PerfilScreenState();
 }
 
-class _PerfilScreenState extends State<PerfilScreen> {
+class _PerfilScreenState extends State<Perfil> {
   // Datos del usuario (simulados, en la práctica esto vendría del backend o almacenamiento)
   String _nickname = "mauriciomunar"; // Nickname del usuario
   String _profileImage = "assets/profile.jpg"; // Imagen de perfil del usuario
