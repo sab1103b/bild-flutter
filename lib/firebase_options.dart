@@ -74,3 +74,4 @@ class DefaultFirebaseOptions {
     measurementId: 'G-PN7DD0GBP9',
   );
 }
+
