@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         '/fyp': (context) => const Fyp(),
         '/chat': (context) => const Chats(),
         '/noti': (context) => const Notificaciones(),
-        '/eventos': (context) => const Eventos(),
+        '/eventos': (context) => Eventos(),
         '/Crear': (context) => const Crearusuario(),
       },
       
