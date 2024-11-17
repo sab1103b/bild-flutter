@@ -34,6 +34,11 @@ class _PerfilScreenState extends State<Perfil> {
     final Color beigeClaro = const Color.fromARGB(255, 211, 200, 182);
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: vinotintoOscuro,
+        title: const Text('Perfil'),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           // Sección de fondo con gradiente y contenido del perfil
@@ -144,6 +149,33 @@ class _PerfilScreenState extends State<Perfil> {
                     'No has subido fotos aún.',
                     style: TextStyle(color: beigeClaro),
                   ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 1, // Perfil es el segundo item en la barra
+        onTap: (index) {
+          // Aquí manejas la navegación de la barra inferior
+          if (index == 0) {
+            Navigator.pushNamed(context, '/fyp'); // Navegar a la pantalla de feed
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/perfil'); // Navegar a la pantalla de perfil
+          } else if (index == 2) {
+            Navigator.pushNamed(context, '/settings'); // Navegar a la pantalla de configuración
+          }
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Inicio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Perfil',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Ajustes',
           ),
         ],
       ),
