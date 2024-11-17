@@ -133,7 +133,7 @@ class _LoginScreenState extends State<Login> {
                 TextButton(
                   onPressed: () {
                     // Redirige a la pantalla de crear usuario
-                    Navigator.pushNamed(context, '/crearusuario');
+                    Navigator.pushNamed(context, '/Crear');
                   },
                   child: Text(
                     'Registrar nuevo usuario',
