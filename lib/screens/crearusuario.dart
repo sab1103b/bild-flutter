@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Para los formateadores de texto
+import 'package:shared_preferences/shared_preferences.dart'; // Para SharedPreferences
 
 class Crearusuario extends StatefulWidget {
   const Crearusuario({super.key});
@@ -225,7 +226,7 @@ class _CrearusuarioState extends State<Crearusuario> {
                 ),
                 const SizedBox(height: 24.0),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     final fullname = _fullnameController.text;
                     final nickname = _nicknameController.text;
                     final email = _emailController.text;
@@ -252,6 +253,16 @@ class _CrearusuarioState extends State<Crearusuario> {
                         phone.isNotEmpty &&
                         country != null &&
                         city != null) {
+                      // Guardar datos en SharedPreferences
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setString('fullname', fullname);
+                      await prefs.setString('nickname', nickname);
+                      await prefs.setString('email', email);
+                      await prefs.setString('password', password);
+                      await prefs.setString('phone', phone);
+                      await prefs.setString('country', country);
+                      await prefs.setString('city', city);
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Usuario registrado con éxito'),

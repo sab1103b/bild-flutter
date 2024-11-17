@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Para acceder a SharedPreferences
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,10 +11,6 @@ class Login extends StatefulWidget {
 class _LoginScreenState extends State<Login> {
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  // Datos de usuario registrados
-  final String registeredNickname = "usuarioEjemplo"; // Nickname predefinido
-  final String registeredPassword = "Contraseña123!"; // Contraseña predefinida
 
   bool _obscurePassword = true; // Control para visibilidad de la contraseña
 
@@ -146,11 +143,18 @@ class _LoginScreenState extends State<Login> {
                 ),
                 const SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: () {
-                    // Verifica si los datos coinciden con los del usuario registrado
-                    if (_nicknameController.text == registeredNickname &&
-                        _passwordController.text == registeredPassword) {
-                      Navigator.pushNamed(context, '/fyp');
+                  onPressed: () async {
+                    final String nickname = _nicknameController.text;
+                    final String password = _passwordController.text;
+
+                    // Obtener datos de SharedPreferences
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    final String? savedNickname = prefs.getString('nickname');
+                    final String? savedPassword = prefs.getString('password');
+
+                    // Verificar si los datos coinciden con los almacenados
+                    if (nickname == savedNickname && password == savedPassword) {
+                      Navigator.pushNamed(context, '/fyp'); // Navegar a la pantalla principal
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
