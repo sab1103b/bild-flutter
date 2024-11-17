@@ -1,40 +1,30 @@
 import 'package:flutter/material.dart';
 
-class Perfil extends StatefulWidget {
-  const Perfil({super.key});
+class PerfilScreen extends StatefulWidget {
+  const PerfilScreen({super.key});
 
   @override
   _PerfilScreenState createState() => _PerfilScreenState();
 }
 
-class _PerfilScreenState extends State<Perfil> {
-  // Datos de usuario simulado
-  final String _fullname = "Mauricio Munar";
-  final String _nickname = "mauriciomunar";
-  final String _email = "mauricio@bind.com";
-  final String _phone = "3001234567";
-  final String _city = "Bogotá";
-  final String _country = "Colombia";
-  final String _profileImage = "assets/profile.jpg"; // Imagen de perfil (simulada)
+class _PerfilScreenState extends State<PerfilScreen> {
+  // Datos del usuario (simulados, en la práctica esto vendría del backend o almacenamiento)
+  String _nickname = "mauriciomunar"; // Nickname del usuario
+  String _profileImage = "assets/profile.jpg"; // Imagen de perfil del usuario
+  List<String> _userPhotos = [
+    "assets/photo1.jpg",
+    "assets/photo2.jpg",
+    "assets/photo3.jpg"
+  ]; // Fotos subidas por el usuario
 
   bool _isEditing = false; // Control para mostrar/ocultar modo edición
 
-  final TextEditingController _fullnameController = TextEditingController();
   final TextEditingController _nicknameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _countryController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _fullnameController.text = _fullname;
     _nicknameController.text = _nickname;
-    _emailController.text = _email;
-    _phoneController.text = _phone;
-    _cityController.text = _city;
-    _countryController.text = _country;
   }
 
   @override
@@ -65,28 +55,6 @@ class _PerfilScreenState extends State<Perfil> {
               ),
               const SizedBox(height: 16.0),
 
-              // Nombre completo
-              _isEditing
-                  ? TextField(
-                      controller: _fullnameController,
-                      decoration: InputDecoration(
-                        labelText: 'Nombre completo',
-                        prefixIcon: Icon(Icons.person, color: vinotintoOscuro),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                    )
-                  : Text(
-                      _fullname,
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                        color: beigeClaro,
-                      ),
-                    ),
-              const SizedBox(height: 16.0),
-
               // Nickname
               _isEditing
                   ? TextField(
@@ -102,126 +70,76 @@ class _PerfilScreenState extends State<Perfil> {
                   : Text(
                       _nickname,
                       style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
                         color: beigeClaro,
                       ),
                     ),
               const SizedBox(height: 16.0),
 
-              // Correo electrónico
-              _isEditing
-                  ? TextField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Correo electrónico',
-                        prefixIcon: Icon(Icons.email, color: vinotintoOscuro),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                    )
-                  : Text(
-                      _email,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w500,
-                        color: beigeClaro,
-                      ),
-                    ),
-              const SizedBox(height: 16.0),
+              // Botón de acción: Editar perfil / Guardar cambios
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _isEditing = !_isEditing; // Cambiar entre modo edición y no edición
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: beigeClaro,
+                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 10.0),
+                ),
+                child: Text(
+                  _isEditing ? 'Guardar cambios' : 'Editar perfil',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: vinotintoOscuro,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24.0),
 
-              // Teléfono
-              _isEditing
-                  ? TextField(
-                      controller: _phoneController,
-                      decoration: InputDecoration(
-                        labelText: 'Teléfono celular',
-                        prefixIcon: Icon(Icons.phone, color: vinotintoOscuro),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
+              // Sección de fotos subidas
+              _userPhotos.isNotEmpty
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Fotos subidas',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: beigeClaro,
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 10.0),
+                        GridView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 8.0,
+                            mainAxisSpacing: 8.0,
+                          ),
+                          itemCount: _userPhotos.length,
+                          itemBuilder: (context, index) {
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                _userPhotos[index],
+                                fit: BoxFit.cover,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     )
                   : Text(
-                      _phone,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w500,
-                        color: beigeClaro,
-                      ),
-                    ),
-              const SizedBox(height: 16.0),
-
-              // Ciudad
-              _isEditing
-                  ? TextField(
-                      controller: _cityController,
-                      decoration: InputDecoration(
-                        labelText: 'Ciudad',
-                        prefixIcon: Icon(Icons.location_city, color: vinotintoOscuro),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                    )
-                  : Text(
-                      _city,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w500,
-                        color: beigeClaro,
-                      ),
-                    ),
-              const SizedBox(height: 16.0),
-
-              // País
-              _isEditing
-                  ? TextField(
-                      controller: _countryController,
-                      decoration: InputDecoration(
-                        labelText: 'País',
-                        prefixIcon: Icon(Icons.flag, color: vinotintoOscuro),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                    )
-                  : Text(
-                      _country,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w500,
-                        color: beigeClaro,
-                      ),
+                      'No has subido fotos aún.',
+                      style: TextStyle(color: beigeClaro),
                     ),
               const SizedBox(height: 24.0),
 
-              // Botones de acción
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      // Acción de editar perfil
-                      setState(() {
-                        _isEditing = !_isEditing;  // Cambiar entre modo edición y no edición
-                      });
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: beigeClaro,
-                      padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 10.0),
-                    ),
-                    child: Text(
-                      _isEditing ? 'Guardar cambios' : 'Editar perfil',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: vinotintoOscuro,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Si está en modo edición, puedes añadir más elementos como foto de perfil, etc.
             ],
           ),
         ),
