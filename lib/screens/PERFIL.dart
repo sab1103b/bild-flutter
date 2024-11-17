@@ -8,7 +8,6 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilScreenState extends State<Perfil> {
-  // Datos del usuario (simulados, en la práctica esto vendría del backend o almacenamiento)
   String _nickname = "mauriciomunar"; // Nickname del usuario
   String _profileImage = "assets/profile.jpg"; // Imagen de perfil del usuario
   List<String> _userPhotos = [
@@ -18,7 +17,6 @@ class _PerfilScreenState extends State<Perfil> {
   ]; // Fotos subidas por el usuario
 
   bool _isEditing = false; // Control para mostrar/ocultar modo edición
-
   final TextEditingController _nicknameController = TextEditingController();
 
   @override
@@ -29,15 +27,23 @@ class _PerfilScreenState extends State<Perfil> {
 
   @override
   Widget build(BuildContext context) {
-    final Color vinotintoClaro = const Color.fromARGB(255, 131, 23, 39);
-    final Color vinotintoOscuro = const Color.fromARGB(255, 68, 4, 4);
-    final Color beigeClaro = const Color.fromARGB(255, 211, 200, 182);
+    final Color vinotintoOscuro = const Color(0xFF660000);
+    final Color beigeClaro = const Color(0xFFF5F5DC);
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: vinotintoOscuro,
-        title: const Text('Perfil'),
-        centerTitle: true,
+        backgroundColor: beigeClaro,
+        title: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            'Perfil',
+            style: TextStyle(
+              fontSize: 28.0,
+              fontWeight: FontWeight.bold,
+              color: vinotintoOscuro,
+            ),
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -47,7 +53,7 @@ class _PerfilScreenState extends State<Perfil> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [vinotintoClaro, vinotintoOscuro],
+                colors: [vinotintoOscuro, beigeClaro],
               ),
             ),
             padding: const EdgeInsets.all(16.0),
@@ -152,32 +158,57 @@ class _PerfilScreenState extends State<Perfil> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1, // Perfil es el segundo item en la barra
-        onTap: (index) {
-          // Aquí manejas la navegación de la barra inferior
-          if (index == 0) {
-            Navigator.pushNamed(context, '/fyp'); // Navegar a la pantalla de feed
-          } else if (index == 1) {
-            Navigator.pushNamed(context, '/perfil'); // Navegar a la pantalla de perfil
-          } else if (index == 2) {
-            Navigator.pushNamed(context, '/settings'); // Navegar a la pantalla de configuración
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Perfil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Ajustes',
-          ),
-        ],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/fyp');
+              },
+              child: Column(
+                children: [
+                  Icon(Icons.home, color: vinotintoOscuro),
+                  Text('FYP', style: TextStyle(color: vinotintoOscuro)),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/');
+              },
+              child: Column(
+                children: [
+                  Icon(Icons.search, color: vinotintoOscuro),
+                  Text('Búsqueda', style: TextStyle(color: vinotintoOscuro)),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/eventos');
+              },
+              child: Column(
+                children: [
+                  Icon(Icons.event, color: vinotintoOscuro),
+                  Text('Eventos', style: TextStyle(color: vinotintoOscuro)),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/perfil');
+              },
+              child: Column(
+                children: [
+                  Icon(Icons.account_circle, color: vinotintoOscuro),
+                  Text('Perfil', style: TextStyle(color: vinotintoOscuro)),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
